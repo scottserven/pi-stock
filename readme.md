@@ -36,7 +36,7 @@ need to be registered with Discord first.
 You will need the following before running the commands below:
 * A Heroku Account
 * Your **Bot Token** from Discord (Step 2 above)
-* Your Discord Server ID ([If you don't know how to get this](https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID-))
+* A Discord Channel ID ([If you don't know how to get this](https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID-))
 
 To deploy to Heroku, clone this repo, and from within the repo folder:
 
@@ -54,7 +54,7 @@ git push heroku main
 You will need the following before running the commands below:
 * Python 3.8.10 or higher
 * Your **Bot Token** from Discord (Step 2 above)
-* Your Discord Server ID ([If you don't know how to get this](https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID-))
+* A Discord Channel ID ([If you don't know how to get this](https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID-))
 
 ### Setup the dotenv
 You can either set environment variables, or put these variables in an .env file:

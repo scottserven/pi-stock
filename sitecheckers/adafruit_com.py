@@ -13,9 +13,9 @@ class AdaFruitChecker(BaseChecker):
         :return: nothing
         """
         response = requests.get(product_page.url)
-        match = re.search('(\d+) <span itemprop="availability">in stock</span>', response.text)
-        quantity = 0
+        match = re.search('>in stock</span>', response.text, re.IGNORECASE)
         available = match is not None
         if available:
-            quantity = match.group(1)
-        return available, quantity
+            return True, 1
+        else:
+            return False, 0

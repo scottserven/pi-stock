@@ -9,6 +9,7 @@ class ProductPageStatus:
         self._description: str = description
         self._checker: "BaseChecker" = checker
         self._alert_allowed = True
+        self._delay = 10  # minimum number of seconds between actual site checks
         self._quantity: int = 0
         self._is_available: bool = False
         self._last_available_check: datetime = datetime(1, 1, 1)
@@ -21,7 +22,7 @@ class ProductPageStatus:
         last_is_available = self._is_available
 
         # Only check the website itself every 5 minutes, regardless of how often this method is called
-        if self._last_available_check + timedelta(minutes=5) < datetime.now():
+        if self._last_available_check + timedelta(seconds=self._delay) < datetime.now():
             (self._is_available, self._quantity) = self._checker.check_stock(self)
             self._last_available_check = datetime.now()
 
@@ -46,8 +47,15 @@ class ProductPageStatus:
         For readability, we're using an explicit method for the alert messages instead of __str__
         :return:
         """
-        return f"{self._description} - Status: {('Out of Stock', 'Available')[self._is_available]} - {self.url}"
+        message = ""
+        if self._quantity and self._quantity > 0:
+            message = f"{self._description} - Status: {('Out of Stock', 'Available')[self._is_available]}, Qty: {self._quantity} - {self.url}"
+        else:
+            message = f"{self._description} - Status: {('Out of Stock', 'Available')[self._is_available]} - {self.url}"
+        return message
 
+    def __str__(self):
+        return f"{self.url} - {self._description}"
 
 class BaseChecker:
 

@@ -49,7 +49,7 @@ async def check_sites():
 
 def run_discord_bot():
 
-    @tasks.loop(seconds=60)  # this doesn't necessarily control the time between checks, see base_checker.py for that
+    @tasks.loop(seconds=10)  # this doesn't necessarily control the time between checks, see base_checker.py for that
     async def site_check_loop():
         await check_sites()
 
